@@ -68,19 +68,13 @@
 .monaco-workbench .part > .title > .title-actions .start-debug-action-item .icon {
 	height: 20px;
 	width: 20px;
-	background: url('start-light.svg') no-repeat;
 	background-size: 16px 16px;
 	background-position: center center;
 	flex-shrink: 0;
 	transition: transform 50ms ease;
-}
-
-.vs-dark .monaco-workbench .part > .title > .title-actions .start-debug-action-item .icon {
-	background-image: url('start-dark.svg');
-}
-
-.hc-black .monaco-workbench .part > .title > .title-actions .start-debug-action-item .icon {
-	background-image: url('start-hc.svg');
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .monaco-workbench .monaco-action-bar .start-debug-action-item .configuration .monaco-select-box {

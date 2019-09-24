@@ -73,7 +73,7 @@ export class ConfigureAction extends AbstractDebugAction {
 		@INotificationService private readonly notificationService: INotificationService,
 		@IWorkspaceContextService private readonly contextService: IWorkspaceContextService
 	) {
-		super(id, label, 'debug-action configure', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-gear', debugService, keybindingService);
 		this.toDispose.push(debugService.getConfigurationManager().onDidSelectConfiguration(() => this.updateClass()));
 		this.updateClass();
 	}
@@ -89,7 +89,7 @@ export class ConfigureAction extends AbstractDebugAction {
 	private updateClass(): void {
 		const configurationManager = this.debugService.getConfigurationManager();
 		const configurationCount = configurationManager.getLaunches().map(l => l.getConfigurationNames().length).reduce((sum, current) => sum + current);
-		this.class = configurationCount > 0 ? 'debug-action configure' : 'debug-action configure notification';
+		this.class = configurationCount > 0 ? 'debug-action codicon-gear' : 'debug-action codicon-gear notification';
 	}
 
 	run(event?: any): Promise<any> {
@@ -199,7 +199,7 @@ export class RemoveAllBreakpointsAction extends AbstractDebugAction {
 	static LABEL = nls.localize('removeAllBreakpoints', "Remove All Breakpoints");
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
-		super(id, label, 'debug-action remove-all', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-close-all', debugService, keybindingService);
 		this.toDispose.push(this.debugService.getModel().onDidChangeBreakpoints(() => this.updateEnablement()));
 	}
 
@@ -257,7 +257,7 @@ export class ToggleBreakpointsActivatedAction extends AbstractDebugAction {
 	static DEACTIVATE_LABEL = nls.localize('deactivateBreakpoints', "Deactivate Breakpoints");
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
-		super(id, label, 'debug-action breakpoints-activate', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-activate-breakpoints', debugService, keybindingService);
 		this.updateLabel(this.debugService.getModel().areBreakpointsActivated() ? ToggleBreakpointsActivatedAction.DEACTIVATE_LABEL : ToggleBreakpointsActivatedAction.ACTIVATE_LABEL);
 
 		this.toDispose.push(this.debugService.getModel().onDidChangeBreakpoints(() => {
@@ -300,7 +300,7 @@ export class AddFunctionBreakpointAction extends AbstractDebugAction {
 	static LABEL = nls.localize('addFunctionBreakpoint', "Add Function Breakpoint");
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
-		super(id, label, 'debug-action add-function-breakpoint', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-add', debugService, keybindingService);
 		this.toDispose.push(this.debugService.getModel().onDidChangeBreakpoints(() => this.updateEnablement()));
 	}
 
@@ -320,7 +320,7 @@ export class AddWatchExpressionAction extends AbstractDebugAction {
 	static LABEL = nls.localize('addWatchExpression', "Add Expression");
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
-		super(id, label, 'debug-action add-watch-expression', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-add', debugService, keybindingService);
 		this.toDispose.push(this.debugService.getModel().onDidChangeWatchExpressions(() => this.updateEnablement()));
 		this.toDispose.push(this.debugService.getViewModel().onDidSelectExpression(() => this.updateEnablement()));
 	}
@@ -341,7 +341,7 @@ export class RemoveAllWatchExpressionsAction extends AbstractDebugAction {
 	static LABEL = nls.localize('removeAllWatchExpressions', "Remove All Expressions");
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
-		super(id, label, 'debug-action remove-all', debugService, keybindingService);
+		super(id, label, 'debug-action codicon-close-all', debugService, keybindingService);
 		this.toDispose.push(this.debugService.getModel().onDidChangeWatchExpressions(() => this.updateEnablement()));
 	}
 
