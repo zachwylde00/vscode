@@ -5,7 +5,7 @@
 
 @font-face {
 	font-family: "codicon";
-	src: url("./codicon.ttf?3b584136fb1f0186a1ee578cdcb5240b") format("truetype");
+	src: url("./codicon.ttf?ce547f8e1bb84d91824cc5f84f0e57dc") format("truetype");
 }
 
 .codicon[class*='codicon-'] {
@@ -67,6 +67,8 @@
 .codicon-eye:before { content: "\ea70" }
 .codicon-eye-unwatch:before { content: "\ea70" }
 .codicon-eye-watch:before { content: "\ea70" }
+.codicon-breakpoint:before { content: "\ea71" }
+.codicon-breakpoint-hint:before { content: "\ea71" }
 .codicon-circle-filled:before { content: "\ea71" }
 .codicon-primitive-dot:before { content: "\ea71" }
 .codicon-stop:before { content: "\ea72" }
@@ -103,6 +105,8 @@
 .codicon-file-add:before { content: "\ea7f" }
 .codicon-new-folder:before { content: "\ea80" }
 .codicon-file-directory-create:before { content: "\ea80" }
+.codicon-breakpoint-unverified:before { content: "\ea81" }
+.codicon-circle-outline:before { content: "\ea81" }
 .codicon-Vector:before { content: "\f101" }
 .codicon-activate-breakpoints:before { content: "\f102" }
 .codicon-archive:before { content: "\f103" }
@@ -127,19 +131,19 @@
 .codicon-breakpoint-data:before { content: "\f116" }
 .codicon-breakpoint-log-unverified:before { content: "\f117" }
 .codicon-breakpoint-log:before { content: "\f118" }
-.codicon-briefcase:before { content: "\f119" }
-.codicon-broadcast:before { content: "\f11a" }
-.codicon-browser:before { content: "\f11b" }
-.codicon-bug:before { content: "\f11c" }
-.codicon-calendar:before { content: "\f11d" }
-.codicon-case-sensitive:before { content: "\f11e" }
-.codicon-check:before { content: "\f11f" }
-.codicon-checklist:before { content: "\f120" }
-.codicon-chevron-down:before { content: "\f121" }
-.codicon-chevron-left:before { content: "\f122" }
-.codicon-chevron-right:before { content: "\f123" }
-.codicon-chevron-up:before { content: "\f124" }
-.codicon-circle-outline:before { content: "\f125" }
+.codicon-breakpoint-unsupported:before { content: "\f119" }
+.codicon-briefcase:before { content: "\f11a" }
+.codicon-broadcast:before { content: "\f11b" }
+.codicon-browser:before { content: "\f11c" }
+.codicon-bug:before { content: "\f11d" }
+.codicon-calendar:before { content: "\f11e" }
+.codicon-case-sensitive:before { content: "\f11f" }
+.codicon-check:before { content: "\f120" }
+.codicon-checklist:before { content: "\f121" }
+.codicon-chevron-down:before { content: "\f122" }
+.codicon-chevron-left:before { content: "\f123" }
+.codicon-chevron-right:before { content: "\f124" }
+.codicon-chevron-up:before { content: "\f125" }
 .codicon-circle-slash:before { content: "\f126" }
 .codicon-circuit-board:before { content: "\f127" }
 .codicon-class:before { content: "\f128" }
