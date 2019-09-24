@@ -41,7 +41,7 @@ interface IBreakpointDecoration {
 }
 
 const breakpointHelperDecoration: IModelDecorationOptions = {
-	glyphMarginClassName: 'debug-breakpoint-hint',
+	glyphMarginClassName: 'codicon-breakpoint-hint',
 	stickiness: TrackedRangeStickiness.NeverGrowsWhenTypingAtEdges
 };
 
@@ -323,7 +323,7 @@ class BreakpointEditorContribution implements IBreakpointEditorContribution {
 		const decorations = this.editor.getLineDecorations(line);
 		if (decorations) {
 			for (const { options } of decorations) {
-				if (options.glyphMarginClassName && options.glyphMarginClassName.indexOf('debug') === -1) {
+				if (options.glyphMarginClassName && options.glyphMarginClassName.indexOf('codicon-breakpoint-hint') === -1) {
 					return false;
 				}
 			}

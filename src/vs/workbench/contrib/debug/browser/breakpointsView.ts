@@ -348,7 +348,7 @@ class BreakpointsRenderer implements IListRenderer<IBreakpoint, IBreakpointTempl
 		data.checkbox.checked = breakpoint.enabled;
 
 		const { message, className } = getBreakpointMessageAndClassName(this.debugService, breakpoint);
-		data.icon.className = className + ' icon';
+		data.icon.className = className + ' icon codicon';
 		data.breakpoint.title = breakpoint.message || message || '';
 
 		const debugActive = this.debugService.state === State.Running || this.debugService.state === State.Stopped;
@@ -443,7 +443,7 @@ class FunctionBreakpointsRenderer implements IListRenderer<FunctionBreakpoint, I
 		data.context = functionBreakpoint;
 		data.name.textContent = functionBreakpoint.name;
 		const { className, message } = getBreakpointMessageAndClassName(this.debugService, functionBreakpoint);
-		data.icon.className = className + ' icon';
+		data.icon.className = className + ' icon codicon';
 		data.icon.title = message ? message : '';
 		data.checkbox.checked = functionBreakpoint.enabled;
 		data.breakpoint.title = message ? message : '';
@@ -498,7 +498,7 @@ class DataBreakpointsRenderer implements IListRenderer<DataBreakpoint, IBaseBrea
 		data.context = dataBreakpoint;
 		data.name.textContent = dataBreakpoint.label;
 		const { className, message } = getBreakpointMessageAndClassName(this.debugService, dataBreakpoint);
-		data.icon.className = className + ' icon';
+		data.icon.className = className + ' icon codicon';
 		data.icon.title = message ? message : '';
 		data.checkbox.checked = dataBreakpoint.enabled;
 		data.breakpoint.title = message ? message : '';
@@ -589,7 +589,7 @@ class FunctionBreakpointInputRenderer implements IListRenderer<IFunctionBreakpoi
 		data.reactedOnEvent = false;
 		const { className, message } = getBreakpointMessageAndClassName(this.debugService, functionBreakpoint);
 
-		data.icon.className = className + ' icon';
+		data.icon.className = className + ' icon codicon';
 		data.icon.title = message ? message : '';
 		data.checkbox.checked = functionBreakpoint.enabled;
 		data.checkbox.disabled = true;
@@ -688,7 +688,7 @@ export function getBreakpointMessageAndClassName(debugService: IDebugService, br
 
 		if (!breakpoint.supported) {
 			return {
-				className: 'debug-breakpoint-unsupported',
+				className: 'codicon-unsupported',
 				message: nls.localize('breakpointUnsupported', "Breakpoints of this type are not supported by the debugger"),
 			};
 		}
@@ -704,13 +704,13 @@ export function getBreakpointMessageAndClassName(debugService: IDebugService, br
 		}
 
 		return {
-			className: breakpoint.logMessage ? 'debug-breakpoint-log' : 'debug-breakpoint-conditional',
+			className: breakpoint.logMessage ? 'codicon-breakpoint-log' : 'codicon-breakpoint-conditional',
 			message: appendMessage(messages.join('\n'))
 		};
 	}
 
 	return {
-		className: 'debug-breakpoint',
+		className: 'codicon-breakpoint',
 		message: breakpoint.message || nls.localize('breakpoint', "Breakpoint")
 	};
 }

@@ -11,18 +11,17 @@
 .monaco-editor .debug-top-stack-frame-column::before {
 	background: url('current-arrow.svg') center center no-repeat;
 }
+.codicon-breakpoint {
+	opacity: 1 !important;
+}
 
-.debug-breakpoint-hint {
-	background: url('breakpoint-hint.svg') center center no-repeat;
+.codicon-breakpoint-hint {
+	opacity: .5;
 }
 
 .debug-breakpoint-disabled,
 .monaco-editor .inline-breakpoint-widget.debug-breakpoint-disabled {
 	background: url('breakpoint-disabled.svg') center center no-repeat;
-}
-
-.monaco-editor .inline-breakpoint-widget.debug-breakpoint-disabled:hover {
-	background: url('breakpoint-hint.svg') center center no-repeat;
 }
 
 .monaco-editor .inline-breakpoint-widget.line-start {
