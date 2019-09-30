@@ -40,8 +40,9 @@ function whenProviderRegistered(scheme: string, fileService: IFileService): Prom
 
 export class UserConfiguration extends Disposable {
 
+	private readonly parser: ConfigurationModelParser;
 	private readonly reloadConfigurationScheduler: RunOnceScheduler;
-	private _userConfiguration: FileServiceBasedUserConfiguration;
+	private _userConfiguration: FileServiceBasedUserConfiguration | undefined;
 	protected readonly _onDidChangeConfiguration: Emitter<ConfigurationModel> = this._register(new Emitter<ConfigurationModel>());
 	readonly onDidChangeConfiguration: Event<ConfigurationModel> = this._onDidChangeConfiguration.event;
 
@@ -51,11 +52,13 @@ export class UserConfiguration extends Disposable {
 		private readonly fileService: IFileService
 	) {
 		super();
-
+		this.parser = new ConfigurationModelParser(this.userSettingsResource.toString(), this.scopes);
 		this.reloadConfigurationScheduler = this._register(new RunOnceScheduler(() => this.reload().then(configurationModel => this._onDidChangeConfiguration.fire(configurationModel)), 50));
 		this._register(Event.filter(this.fileService.onFileChanges, e => e.contains(this.userSettingsResource))(() => this.reloadConfigurationScheduler.schedule()));
-		this._userConfiguration = this.createAndRegisterConfiguration();
-		this.reload().then(configurationModel => this._onDidChangeConfiguration.fire(configurationModel));
+		whenProviderRegistered(Schemas.file, fileService).then(() => {
+			this._userConfiguration = this.createAndRegisterConfiguration();
+			this.reload().then(configurationModel => this._onDidChangeConfiguration.fire(configurationModel));
+		});
 	}
 
 	private createAndRegisterConfiguration(): FileServiceBasedUserConfiguration {
@@ -66,15 +69,36 @@ export class UserConfiguration extends Disposable {
 	}
 
 	async initialize(): Promise<ConfigurationModel> {
-		return this.reload();
+		return this.load();
+	}
+
+	async load(): Promise<ConfigurationModel> {
+		if (this._userConfiguration) {
+			return this.reload();
+		}
+		try {
+			const content = await this.fileService.readFile(this.userSettingsResource);
+			this.parser.parseContent(content.value.toString() || '{}');
+			return this.parser.configurationModel;
+		} catch (e) {
+			return new ConfigurationModel();
+		}
 	}
 
 	async reload(): Promise<ConfigurationModel> {
+		if (!this._userConfiguration) {
+			this._userConfiguration = this.createAndRegisterConfiguration();
+		}
 		return this._userConfiguration.loadConfiguration();
 	}
 
 	reprocess(): ConfigurationModel {
-		return this._userConfiguration.reprocess();
+		if (this._userConfiguration) {
+			return this._userConfiguration.reprocess();
+		} else {
+			this.parser.parse();
+			return this.parser.configurationModel;
+		}
 	}
 }
 
